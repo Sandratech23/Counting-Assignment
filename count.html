@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title> Counter </title> 
+<style>
+    #unitPrice{padding-left: 130px; font-weight: bolder;}
+    .counter-box{
+        display:flex;
+        justify-content: space-evenly;
+        width: 300px;
+    }
+button{
+        background-color: orange;
+        color: black;
+        padding: 10px 15px;
+        cursor:pointer     
+    }
+</style>
+</head>
+<body>
+    <div>
+        <p id="unitPrice">&#8358 500</p>
+        <section class="counter-box">
+            <button id="decrementButton">-</button>
+            <p id="counting">
+                <strong id="counter">1</strong>
+            </p>
+            <button id="incrementButton">+</button>
+        </section>
+    </div>
+        <script>
+            const incrementButton=document.getElementById('incrementButton');
+            const decrementButton=document.getElementById('decrementButton');
+            const countNumber=document.getElementById('counter');
+            const unitPriceValue = document.getElementById('unitPrice')
+
+            const upDateCounter=()=>{
+                countNumber.innerText=counterObject.count;
+                updateUnitPrice();
+            };
+
+            const updateUnitPrice = () => {
+                const unitPrice =  500;
+                const total = unitPrice * counterObject.count;
+                unitPriceValue.innerText = total;
+            };
+
+    let counterObject = {
+        count:1,
+        incrementCount(){
+            this.count++;
+            upDateCounter();
+        },
+        decrementCounter(){
+            this.count--;
+            upDateCounter();
+        },
+    };
+    incrementButton.addEventListener('click',()=>{
+        {counterObject.incrementCount();}
+    });
+    decrementButton.addEventListener('click', ()=>{
+        if(Number(countNumber.innerText)!==1){
+            counterObject.decrementCounter();
+        }
+    });
+
+    </script>
+</body>
+</html>
