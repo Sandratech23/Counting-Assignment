@@ -1,0 +1,14 @@
+
+
+*{font-weight: bold;}
+.container{border:3px solid whitesmoke;height: 500px; width:700px; margin: auto;}
+.form-box{border: 2px solid rgb(155, 177, 196); height: 360px; width: 600px; margin: auto;}
+.Subhead{border: 1px solid black; width: 598px; height: 30px; background-color: green; color: aliceblue; text-align: center;}
+  #selectionBox{color:black; width: 500px; height: 30px;border-radius: 5px; margin:20px 50px;}
+  #textInput{ margin:20px 50px; color:black; width: 300px; height: 30px; border-radius: 5px; text-align: right;}
+  #result{ margin:20px 50px; color:black; width: 300px; height: 30px; border-radius: 5px; text-align: right;}
+  #dollarRate{text-align: center;}
+  #toCurrency{width: 100px; height: 30px; border-radius: 5px;}
+  #note{text-align: center;}
+  #link{text-decoration: none; color: rgb(58, 131, 131);}
+  #btn{background-color: rgb(67, 18, 112);color: white; margin-left: 230px; height: 25px; width: 150px;border-radius: 5px;}
