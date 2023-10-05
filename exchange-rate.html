@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title> Dollar Rate </title> 
+<link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section class="container">
+            <div class="form-box">
+                <div class="Subhead">
+                    Naira Exchange Rates by nairatoday.com
+                </div>
+                <select name="" id="selectionBox">
+                    <option value="588">Central Bank Rate</option>   
+                    <option value="962">Black Market</option>  
+                    <option value="450">FX</option>  
+                    <option value="450">Money Gram</option>  
+                    <option value="458">Western Union</option> 
+                    <option value="598">Bureau De Change</option> 
+                </select>
+                <div id="dollarRate"></div>
+                <div>
+                    <input type="number" id="textInput" placeholder="0"> <span id="naira">NGN(&#8358)</span>
+                </div>
+                  
+                <input type="number" id="result" placeholder="0.0000">
+                <select name="" id="toCurrency">
+                    <option value="USD">USD($)</option>
+                    <option value="GBP">GBP(&#163;)</option>
+                    <option value="EUR">EUR(&#8364;)</option>
+                </select>
+                <p id="note">Check our website <a href="" id="link">nairatoday.com</a> for more forex related news and information</p>
+                <button type="button" id="btn">Add to website</button>
+            </div> 
+        </section>
+ 
+        <script src="index.js"> </script>
+    </body>
+</html>
