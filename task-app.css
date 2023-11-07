@@ -1,0 +1,105 @@
+:root {
+    --ds-shadow-fullscreen: 0px 1px 1px rgba(0, 0, 0, 0.02),
+      0px 8px 16px -4px rgba(0, 0, 0, 0.04),
+      0px 24px 32px -8px rgba(0, 0, 0, 0.06);
+    --primary-color:brown;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .container{
+    display: flex;
+    width: auto;
+    height: 700px;
+    background-image: url(https://media.istockphoto.com/id/1487423912/photo/vases-and-objects-on-the-table-in-a-warm-room-with-sunlight-coming-in.jpg?s=612x612&w=0&k=20&c=Va4ODkH7Z1DgXD1MIJ0sPEtNQ5ABWNyRA4Wx_wq-EiQ=);
+   background-repeat: no-repeat;
+   background-size: cover;
+   /* background-color: black; */
+  }
+  .intro-box{
+    margin: 100px
+  }
+  .intro,.quotes{
+    font-family:system-ui;
+    color: rgba(46, 16, 16, 0.795);
+  }
+  .box {
+    margin: 150px auto;
+    width: fit-content;
+  }
+  .delete,
+  .edit {
+    text-decoration: underline;
+    color: tomato;
+    margin: 0px 10px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .label {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color:var(--primary-color);
+  }
+  
+  /* -- modal styles -- */
+  .modal-overlay {
+    background-color: #fff;
+    opacity: 0.8;
+    z-index: 100;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow-y: scroll;
+  }
+  .modal-content {
+    width: 300px;
+    height: fit-content;
+    border: 1px solid #ddd;
+    box-shadow: var(--ds-shadow-fullscreen);
+    background-color: 333, 74%, 15%;
+    padding: 20px;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .close-button {
+    all: unset;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+  .btn-box button {
+    border: none;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    height: 35px;
+    font-weight: 600;
+    color: white;
+    border-radius: 2px;
+    margin-top: 20px;
+    /* background-color: var(--primary-color); */
+    background-color:var(--primary-color);
+    box-shadow: var(--ds-shadow-fullscreen);
+  }
+  
+  .close {
+    display: none;
+  }
+
+  #taskInput{height: 30px;
+  width:300px}
+  #addBtn{height: 30px;}
+
+  #remainder{border: 0px; cursor: pointer;background-color:rgb(212, 207, 207);font-weight: 600;}
