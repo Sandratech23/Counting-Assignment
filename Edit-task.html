@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task App</title>
+    <link rel="stylesheet" href="./task-app.css" />
+  </head>
+  <!-- Task app using html css & vanilla javascript -->
+  <body>
+    <div class="box">
+      <div>
+        <label for="" class="label">Enter task</label> <br />
+        <input type="text" id="taskInput" placeholder="enter task" />
+        <button id="addBtn">Add Task</button>
+      </div>
+
+      <ul class="task-list" id="taskList"></ul>
+    </div>
+
+    <div class="modal-overlay close" id="modal">
+      <!-- modal -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Edit task</h3>
+          <button id="closeButton" class="close-button">&#x2715;</button>
+        </div>
+        <div>
+          <textarea
+            name=""
+            id=""
+            class="edit-input"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <div class="btn-box"><button id="editButton">Save Changes</button></div>
+      </div>
+    </div>
+
+    <script>
+      const addTask = document.querySelector('#addBtn');
+      const taskInput = document.querySelector('#taskInput');
+      const closeButton = document.querySelector('#closeButton');
+      const modal = document.querySelector('#modal');
+      const editButton = document.querySelector('#editButton');
+      const openModalBtn = document.querySelector('#openModalBtn');
+
+      // state
+      const taskDetails = {
+        taskList: [], // {id, label}
+        setTaskList: function (filteredTaskList) {
+          this.taskList = filteredTaskList;
+          UpdateUI();
+        },
+
+        addToTaskList: function (input) {
+          this.taskList.push(input);
+          UpdateUI();
+        },
+      };
+
+      // MODAL CODE
+      closeButton.addEventListener('click', function () {
+        closeModal();
+      });
+
+      const closeModal = () => {
+        if (modal.classList.contains('close')) {
+        } else {
+          modal.classList.add('close');
+        }
+      };
+      const openModal = () => {
+        modal.classList.toggle('toggle-modal');
+      };
+
+      editButton.addEventListener('click', () => {
+  const editInput = document.querySelector('.edit-input');
+  const updatedContent = editInput.value;
+
+  const taskIdToEdit = modal.getAttribute('data-task-id');
+  const taskToEdit = taskDetails.taskList.find((task) => task.id === parseInt(taskIdToEdit, 10));
+
+  if (taskToEdit) {
+    taskToEdit.label = updatedContent;
+  }
+  closeModal();
+  UpdateUI();
+});
+
+      const toggleModal = (taskId) => {
+  const taskToEdit = taskDetails.taskList.find((task) => task.id === taskId);
+  if (taskToEdit) {
+    const editInput = document.querySelector('.edit-input');
+    editInput.value = taskToEdit.label;
+
+    modal.setAttribute('data-task-id', taskId);}
+  modal.classList.toggle('close');
+};
+
+      // HELPERS
+      const createDate = () => {
+        return new Date().toLocaleDateString('en-GB',{weekday:"short", day:"2-digit", year:"numeric",hour:"2-digit",minute:"2-digit", hour12:true});
+      };
+
+      const truncateWord = (input, numberOfCharacter = 12) => {
+        if (input.length > numberOfCharacter) {
+          return `${input.slice(0, numberOfCharacter)} <button id="remainder"> ... </button>`;
+        }
+        return input;
+      };
+
+      const deleteTask = (id) => {
+        const filteredList = taskDetails.taskList.filter((task) => {
+          return task.id !== id;
+        });
+        taskDetails.setTaskList(filteredList);
+      };
+
+      const UpdateUI = () => {
+        const taskList = document.querySelector('#taskList');
+        taskList.innerHTML = '';
+        taskDetails.taskList.forEach((task, index) => {
+          const li = document.createElement('li');
+
+          li.innerHTML = `<div><span>${truncateWord(
+            task.label
+          )} <span>${createDate()}</span></span> <span class='delete' onclick='deleteTask(${task.id})'>Delete</span><span class='edit' onclick='toggleModal(${task.id})'>Edit</span></div>`;
+          taskList.appendChild(li);
+
+          const truncateSpan = li.querySelector('#remainder');
+          if (truncateSpan) {
+            truncateSpan.addEventListener('mouseenter', () => {
+              truncateSpan.title = task.label;
+            });
+
+            truncateSpan.addEventListener('mouseleave', () => {
+              truncateSpan.title = '';
+            });
+          }
+        });
+      };
+
+      const upDateTaskList = (input) => {
+        taskDetails.addToTaskList(input);
+      };
+
+      addTask.addEventListener('click', () => {
+        if (taskInput.value.trim() !== '')
+        upDateTaskList({ id: Date.now(), label: taskInput.value });
+        taskInput.value = '';
+      });
+
+      taskInput.addEventListener('keyup', (e) => {
+        if (taskInput.value.trim() !== '')
+        if (e.key.toLowerCase() == 'enter') {
+          upDateTaskList({ id: Date.now(), label: taskInput.value });
+          taskInput.value = '';
+        }
+      });
+      document.addEventListener('DOMContentLoaded', () => {
+        UpdateUI();
+      });
+
+    </script>
+  </body>
+</html>
